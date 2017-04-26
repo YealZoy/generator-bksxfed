@@ -80,7 +80,7 @@ pluginsConfig.push(new webpack.DllReferencePlugin({
 pluginsConfig.push(new CopyWebpackPlugin([
 	{
 		from:path.resolve(__dirname,'../app/dll'),
-		to:path.resolve(__dirname,'../bin/dll')
+		to:path.resolve(__dirname,'../build/dll')
 	}
 ]));
 
