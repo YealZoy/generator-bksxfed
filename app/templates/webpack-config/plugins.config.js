@@ -40,8 +40,7 @@ pagesArr.forEach((page) => {
 		template: path.resolve(pages,`./${page}/page.html`),
 		chunks: [page, 'commons/js'],
 	    hash: true,
-	    xhtml: true,
-	    minify:true
+	    xhtml: true
 	});
   	pluginsConfig.push(htmlPlugin);
 });
