@@ -71,10 +71,12 @@ pluginsConfig.push(new webpack.LoaderOptionsPlugin({
 }));
 pluginsConfig.push(new webpack.HotModuleReplacementPlugin());
 
+/*
 pluginsConfig.push(new webpack.DllReferencePlugin({
 	context: __dirname,
    	manifest: path.resolve(__dirname,'../app/dll/manifest.json'),
 }));
+*/
 
 pluginsConfig.push(new CopyWebpackPlugin([
 	{

@@ -18,11 +18,13 @@ module.exports = {
   },
   entry: require('./otherLib.js'),
   plugins: [
+    /*
     new webpack.DllPlugin({
       path: output, 
       name: '[name]',  
       context: __dirname 
     }),
+    */
   
     new webpack.ProvidePlugin({
       $: 'jquery',
