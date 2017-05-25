@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>请求 example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<br /><br />
+/api/users
+<input type="button" value="users" id="users">
+
+
+<table>
+    <thead>
+        <tr>
+            <th>firstName</th>
+            <th>lastName</th>
+        </tr>
+    </thead>
+    <tbody id="user_data">
+        <script type="text/html">
+          <% for(var i = 0;i < data.length;i++){ %>
+            <tr><td><%=data[i].firstName%></td><td><%=data[i].lastName%></td></tr>
+          <%}%>
+        </script>
+    </tbody>
+
+</table>
+
+<script type="text/javascript" src="../../lib/script/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../lib/script/generaltools.min.js"></script>
+<script>
+    $(function () {
+        $('#users').click(function(){
+            //$('#user_data').html('');
+            $.ajax({
+                url: '/api/users',
+                type:'get',
+                temp:'#user_data',
+                success:function(data,textStatus,jqXHR){
+                    alert('chenggong');
+                    console.log(data);
+
+                }
+            });
+        });      
+    });
+</script>
+</body>
+</html>

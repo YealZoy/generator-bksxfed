@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var proxy = require('http-proxy-middleware');
 var htmlmin = require('gulp-htmlmin');
-var changed = require('gulp-changed');
 var cleancss = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
@@ -74,11 +73,11 @@ gulp.task('css', function() {
         }))
         .pipe(gulp.dest('build'));
 });
-gulp.task('fonts',function(){
-	gulp.src('lib/fonts/**')
-		.pipe(flatten())
-		.pipe(gulp.dest('build/lib/fonts'));
-});
+// gulp.task('fonts',function(){
+// 	gulp.src('lib/fonts/**')
+// 		.pipe(flatten())
+// 		.pipe(gulp.dest('build/lib/fonts'));
+// });
 gulp.task('script',function(){
 	gulp.src('app/**/*.html')
     	.pipe(cheerio(function($){
@@ -132,5 +131,5 @@ gulp.task('watch',function(){
 	gulp.watch('app/**/*.js',['script']);
 	 
 });
-gulp.task('default',['image','css','html','fonts','script','serverBin','watch']);
+gulp.task('default',['image','css','html','script','serverBin','watch']);
 //gulp.task('default',['cheerio']);

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.error{color:red;padding-left:20px;}
+</style>
+<title></title>
+</head>
+<body>
+    <div style="width: 1000px;margin: 100px auto;">
+        <form id="aaa" name="test">
+                  <div class="mb15">
+                      <label for="mobile">邮箱: </label>
+                      <input type="email" name="email" maxlen="25" minlen="2" validate="email" require tips="邮箱" />
+                      <span class="error"></span>
+                      <span class="ml20 g9">方便复制：a@126.com，还有require必填</span>
+                  </div>
+                  <div class="mb15">
+                        <label for="chinese">输入中文: </label>
+                        <input type="text" name="chinese" validate="full" tips="输入中文" pattern="^[\u0391-\uFFE5]+$" />
+                        <span class="error"></span>
+                        <span class="ml20 g9">pattern正则匹配，只能输入中文</span>
+                  </div>
+                  <div class="mb15">
+                        <label for="mobile">联系电话: </label>
+                        <input type="text" name="mobile" validate="lxdh" tips="联系电话"  errMsg="我就是试试" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="phone">手机号: </label>
+                        <input type="text" name="phone" validate="phone" tips="手机号" errMsg="我就是试试" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="sfzhm">身份证号码: </label>
+                        <input type="text" name="sfzhm" tips="身份证号码" validate="sfzhm" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="yb">邮编: </label>
+                        <input type="text" name="yb" validate="yb" tips="邮编" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="number">数字: </label>
+                        <input type="text" name="number" validate="number" tips="数字" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="double">小数: </label>
+                        <input type="text" name="double" validate="double" tips="小数" />
+                        <span class="error"></span>
+                        <span class="ml20 g9">小数点后默认2位</span>
+                  </div>
+                  <div class="mb15">
+                        <label for="jqjk">文本: </label>
+                        <input type="text" name="jqjk" validate="full" minlen="1" maxlen="5" tips="文本" />
+                        <span class="error"></span>
+                  </div>
+                  <div class="mb15">
+                        <label for="comment" class="db">评论内容：</label>
+                        <textarea id="comment" class="w460" rows="5" validate="full" tips="评论内容" minlen="5" maxlen="10" require ></textarea>
+                        <span class="error"></span>
+                        <span class="ml20 g9">限制5~10个字符 require</span>
+                  </div>
+                  <div class="mb15" id="vcheckbox">
+                        <label for="topic">checkbox (至少选择一个且至多选择两个)</label>
+                        <input type="checkbox" id="topic_apple" tips="水果" minnum="1" maxnum="2" value="apple" name="topic[]">苹果 
+                        <input type="checkbox" id="topic_orange" tips="水果" value="orange" name="topic[]">桔子
+                        <input type="checkbox" id="topic_pear" tips="水果" value="pear" name="topic[]">桃子
+                        <span class="error"></span>
+                       
+                  </div>
+                  <div><input id="submit" type="button" vtotal value="提交"/></div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="../../lib/script/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../lib/script/generaltools.min.js"></script>
+<script type="text/javascript">
+$(function(){
+      $('#aaa').validate();
+});
+</script>
+</html>

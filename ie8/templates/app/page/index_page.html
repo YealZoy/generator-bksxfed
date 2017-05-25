@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>paging example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css"/>
+</head>
+<body>
+<div id="wrapper">
+    <section>
+        <div class="data-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>firstName</th>
+                        <th>lastName</th>
+                    </tr>
+                </thead>
+                <tbody id="content">
+                    <script type="text/html">
+                      <% for(var i = 0;i < data.length;i++){ %>
+                        <tr><td><%=data[i].firstName%></td><td><%=data[i].lastName%></td></tr>
+                      <%}%>
+                    </script>
+                </tbody>
+
+            </table>
+        </div>
+        <div id="pagination-content"></div>
+    </section>
+</div>
+<script type="text/javascript" src="../../lib/script/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../lib/script/generaltools.min.js"></script>
+<script>
+    $(function () {
+        $('#content').paging({
+          url:'/api/users',
+          pageSize:5,
+          callback: function(){
+            console.log('callback');
+          }
+        });     
+    });
+</script>
+</body>
+</html>
