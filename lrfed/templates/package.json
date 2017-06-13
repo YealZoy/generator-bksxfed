@@ -1,0 +1,35 @@
+{
+  "name": "<%=appname%>",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^2.0.0",
+    "gulp-cheerio": "^0.6.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-flatten": "^0.3.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-modify-css-urls": "^0.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-rev-collector": "^1.1.1",
+    "gulp-uglify": "^2.1.2",
+    "gulp-useref": "^3.1.2",
+    "http-proxy-middleware": "^0.17.4",
+    "imagemin-pngquant": "^5.0.0",
+  },
+  "dependencies": {
+  }
+}
