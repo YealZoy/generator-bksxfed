@@ -61,9 +61,9 @@ module.exports = class extends Generator{
 			//用于安装相关库 (npm, bower)
 			this.log(chalk.green('开始安装依赖包\n'));
 			this.installDependencies({
-				npm:true,
+				npm:false,
 				bower:false,
-				yarn:false,
+				yarn:true,
 				callback:function(){
 					_this.log(chalk.green('包已经安装完成\n'));
 				}
