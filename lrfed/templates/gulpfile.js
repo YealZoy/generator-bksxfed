@@ -12,6 +12,7 @@ var pngquant = require('imagemin-pngquant');
 var replace = require('gulp-replace');
 var cheerio = require('gulp-cheerio');
 var glob = require("glob");
+var modifyCssUrls = require('gulp-modify-css-urls');
 var serverConfig = require('./server.config.js');
 
 const xy = serverConfig.https ? 'https' : 'http';
@@ -41,6 +42,7 @@ gulp.task('css', function() {
             keepSpecialComments: '*'
         }))
         .pipe(gulp.dest('build'));
+
 });
 gulp.task('script',function(){
 	gulp.src('./app/**/*.js')
@@ -96,13 +98,60 @@ gulp.task('html',function(){
                     var _this_href = $(this).attr('href');
                     if(_this_href){
                         if(_this_href.indexOf('node_modules') > -1){
+
+                            //添加绝对路径
                             var _href = _this_href.split('node_modules');
                             if(_href.length == 2){
                                 $(this).attr('href',lj + 'node_modules' + _href[_href.length-1]);
                             }
+
+                            //将node_modules里面的css放入build
                             var _hrefs = _this_href.split('/');
+
+                            //将css文件中的图片放入build
                             gulp.src('node_modules/**/'+ _hrefs[_hrefs.length-1])
+                                .pipe(modifyCssUrls({
+                                    modify: function (url, filePath) {
+                                        //console.log(url);
+                                        //return 'app/' + url;
+
+
+
+
+                                        var urlss = url.split('/');
+
+                                        urlss_length = 0;
+                                        for(var i = 0;i < urlss.length; i++){
+                                            if(urlss[i] == '..'){
+                                                urlss_length++
+                                            }
+                                        }
+
+                                        var filePathss = filePath.split('node_modules');
+
+                                        var filePathss01 = filePathss[1].split('\\');
+                                        var filePathfinal01 = '';
+
+                                        for(var i = 0; i < filePathss01.length - urlss_length - 1; i++){
+                                            filePathfinal01 += filePathss01[i] + '/';
+                                        }
+
+                                        for(var i = 0;i < urlss.length - 1; i++){
+                                            if(urlss[i] != '..'){
+                                                filePathfinal01 += urlss[i] +'/';
+                                            }
+                                        }
+                                        gulp.src('node_modules'+ filePathfinal01 + urlss[urlss.length - 1])
+                                            .pipe(gulp.dest('build/node_modules'+ filePathfinal01));
+
+                                        return lj + 'node_modules'+ filePathfinal01 + urlss[urlss.length - 1];
+                                    }
+
+
+                                }))
                                 .pipe(gulp.dest('build/node_modules'));
+
+
                         }else if(_this_href.indexOf('styles') > -1){
                             var _href = _this_href.split('styles');
                             if(_href.length == 2){

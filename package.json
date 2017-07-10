@@ -1,6 +1,6 @@
 {
   "name": "generator-bksxfed",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "北控三兴web前端生成器",
   "main": "index.js",
   "scripts": {
