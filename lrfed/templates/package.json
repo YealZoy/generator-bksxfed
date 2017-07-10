@@ -1,5 +1,5 @@
 {
-  "name": "project1",
+  "name": "<%=appname%>",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -20,11 +20,11 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
+    "gulp-modify-css-urls": "^0.2.2",
     "gulp-replace": "^0.5.4",
     "http-proxy-middleware": "^0.17.4",
     "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
