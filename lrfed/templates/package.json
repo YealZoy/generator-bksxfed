@@ -24,7 +24,9 @@
     "gulp-replace": "^0.5.4",
     "http-proxy-middleware": "^0.17.4",
     "imagemin-pngquant": "^5.0.0",
-    "jshint": "^2.9.4"
+    "jshint": "^2.9.4",
+    "gulp-if": "^2.0.2",
+    "minimist": "^1.2.0"
   },
   "dependencies": {}
 }
