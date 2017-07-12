@@ -17,6 +17,7 @@ var modifyCssUrls = require('gulp-modify-css-urls');
 var sourcemaps = require('gulp-sourcemaps');
 var minimist = require('minimist');
 var gulpif = require('gulp-if');
+var plumber = require('gulp-plumber');
 var serverConfig = require('./server.config.js');
 
 var knownOptions = {
@@ -30,24 +31,25 @@ const xy = serverConfig.https ? 'https' : 'http';
 const lj = xy + '://' + serverConfig.host + ':' + serverConfig.port + '/';
 
 gulp.task('image',function(){
-    gulp.src('./app/**/*.{png,jpg,gif,ico}')
-        .pipe(cache(imagemin({
+	gulp.src('./app/**/*.{png,jpg,gif,ico}')
+		.pipe(cache(imagemin({
             progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()] 
+			svgoPlugins: [{removeViewBox: false}],
+      		use: [pngquant()] 
         })))
-        .pipe(gulp.dest('build'));
+		.pipe(gulp.dest('build'));
 });
 gulp.task('css', function() {
     gulp.src('./app/**/*.css')
+        .pipe(plumber())
         .pipe(gulpif(options.env === 'dev', sourcemaps.init()))
         .pipe(spriter({
             'spriteSheet': './build/images/spritesheet.png',
             'pathToSpriteSheetFromCSS': '../images/spritesheet.png' 
         }))
         .pipe(autoprefixer())
-        .pipe(replace(/(\.\.\/)+/g,lj))
-        .pipe(cleancss({
+		.pipe(replace(/(\.\.\/)+/g,lj))
+		.pipe(cleancss({
             advanced: false,
             compatibility: 'ie7',
             keepBreaks: true,
@@ -58,11 +60,12 @@ gulp.task('css', function() {
 
 });
 gulp.task('script',function(){
-    gulp.src('./app/**/*.js')
+	gulp.src('./app/**/*.js')
+        .pipe(plumber())
         .pipe(gulpif(options.env === 'dev', sourcemaps.init()))
         .pipe(uglify())
         .pipe(gulpif(options.env === 'dev', sourcemaps.write('/')))
-        .pipe(gulp.dest('build'));
+		.pipe(gulp.dest('build'));
 });
 gulp.task('html',function(){
     var option = {
@@ -85,6 +88,7 @@ gulp.task('html',function(){
                 newPath1 += path1[k] + '/';
             }
             gulp.src(files[i])
+                .pipe(plumber())
                 .pipe(cheerio(function($,file){
 
                     $('script').each(function(){
@@ -217,14 +221,14 @@ gulp.task('html',function(){
 
 });
 gulp.task('serverBin',function(){
-    connect.server(serverConfig);
-     
+	connect.server(serverConfig);
+	 
 });
 gulp.task('watch',function(){
-    gulp.watch('app/**/*.html',['html']);
-    gulp.watch('app/**/*.css',['css']);
-    gulp.watch('app/**/*.{png,jpg,gif,svg}',['image']);
-    gulp.watch('app/**/*.js',['script']);
-     
+	gulp.watch('app/**/*.html',['html']);
+	gulp.watch('app/**/*.css',['css']);
+	gulp.watch('app/**/*.{png,jpg,gif,svg}',['image']);
+	gulp.watch('app/**/*.js',['script']);
+	 
 });
 gulp.task('default',['image','css','script','serverBin','watch', 'html']);

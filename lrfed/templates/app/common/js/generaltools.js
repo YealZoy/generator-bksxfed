@@ -87,6 +87,7 @@
       var url = obj.url;
       var pageSize = obj.pageSize || 10;
       var callBack = obj.callback;
+      var locator = obj.locator;
       var _this = $(this);
       var name = _this.attr('id');
       var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
@@ -95,24 +96,24 @@
       for (i = 0; i < 6; i++) {  
           randomId += $chars.charAt(Math.floor(Math.random() * maxPos));  
       }
-
       var container = $('#pagination-' + name);
-      var options = {
-            dataSource: function(done){
-              $.ajax({
-                  type: 'GET',
-                  url: url,
-                  success: function(data,textStatus,jqXHR){
-                    done(data);
-                  },
-                  error:function(jqXHR,textStatus,errorThrown){
-                    alert(jqXHR.responseText);
-                  }
-              });
-            },
+      $.ajax({
+        url:url,
+        type:'GET',
+        success:function(data,textStatus,jqXHR){
+          var options = {
+            dataSource: url,
             pageSize: pageSize,
+            totalNumber:data.rowsCount,
             showGoInput: true,
             showGoButton: true,
+            locator :function(){
+                return locator;
+            },
+            alias: {
+                pageNumber: 'pageNum',
+                pageSize:'pageSize'
+            },
             callback: function (response, pagination) {
               _this.children('script').attr('id',randomId);                 
               var list = {
@@ -126,6 +127,9 @@
         };
 
         container.pagination(options);
+        }
+      })
+      
     }
 
   if (typeof $ === 'undefined') {
