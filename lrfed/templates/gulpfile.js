@@ -232,3 +232,4 @@ gulp.task('watch',function(){
 	 
 });
 gulp.task('default',['image','css','script','serverBin','watch', 'html']);
+gulp.task('build',['image','css','script','html']);
