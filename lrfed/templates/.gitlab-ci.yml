@@ -1,0 +1,19 @@
+image: 130.10.8.208:8889/monostream/nodejs-gulp-bower
+
+stages:
+  - build
+
+# 前端项目构建
+fed_build:
+  stage: build
+  script:
+    -  yarn config list && yarn install && gulp build --env pro
+
+  only:
+    - tags
+  tags:
+    - node
+  artifacts:
+      name: "$CI_COMMIT_REF_NAME"
+      paths:
+      - build/

@@ -1,5 +1,5 @@
 {
-  "name": "<%=appname%>",
+  "name": "testproject02",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -18,8 +18,10 @@
     "gulp-connect": "^5.0.0",
     "gulp-css-spriter": "^0.4.0",
     "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
     "gulp-modify-css-urls": "^0.2.2",
     "gulp-plumber": "^1.1.0",
     "gulp-replace": "^0.5.4",
@@ -28,8 +30,9 @@
     "http-proxy-middleware": "^0.17.4",
     "imagemin-pngquant": "^5.0.0",
     "jshint": "^2.9.4",
-    "gulp-if": "^2.0.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "jquery": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

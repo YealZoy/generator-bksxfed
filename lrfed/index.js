@@ -51,6 +51,20 @@ module.exports = class extends Generator{
 			{appname:this.answers.appname}
 		);
 
+		//把gitignore复制到项目中
+        this.fs.copyTpl(
+            this.templatePath('.gitignore'),
+            this.destinationPath('gitignore')
+        );
+
+        //把gitignore复制到项目中
+        this.fs.copyTpl(
+            this.templatePath('.gitlab-ci.yml'),
+            this.destinationPath('.gitlab-ci.yml')
+        );
+
+
+
 	}
 	conflicts(){
 		//用于处理冲突异常
