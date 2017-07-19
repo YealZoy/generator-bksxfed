@@ -53,8 +53,8 @@ module.exports = class extends Generator{
 
 		//把gitignore复制到项目中
         this.fs.copyTpl(
-            this.templatePath('.gitignore'),
-            this.destinationPath('gitignore')
+            this.templatePath('gitignore'),
+            this.destinationPath('.gitignore')
         );
 
         //把gitignore复制到项目中

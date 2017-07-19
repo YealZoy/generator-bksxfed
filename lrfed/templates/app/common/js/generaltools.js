@@ -52,6 +52,7 @@
                 }
             },
             success:function(data,textStatus,jqXHR){
+                fn.success(data,textStatus,jqXHR);
                 if(data){
                     if(data.id_token){
                         sessionStorage.setItem('id_token',data.id_token);
@@ -77,7 +78,6 @@
                         $(temp).html(template(randomId,list));
                     }
                 }
-                fn.success(data,textStatus,jqXHR);
             }
         });
         return _ajax(_opt);
@@ -124,14 +124,14 @@
                         pageSize:'pageSize'
                     },
                     callback: function (response, pagination) {
+                        if(callBack){
+                            callBack(response);
+                        }
                         _this.children('script').attr('id',randomId);
                         var list = {
                             data : response
                         }
                         _this.html(template(randomId,list));
-                        if(callBack){
-                            callBack(response);
-                        }
                     }
                 };
 
@@ -1175,9 +1175,9 @@
         };
     });
 
-  /*
-   * export via AMD or CommonJS
-   * */
+    /*
+     * export via AMD or CommonJS
+     * */
     if (typeof define === 'function' && define.amd) {
         define(function() {
             return $;
